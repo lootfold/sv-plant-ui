@@ -2,23 +2,32 @@ import React, { Component } from "react";
 import Plant from "./plant";
 
 class Plants extends Component {
+  baseUrl = "https://localhost:5001/api/plants";
   state = {
     plants: [],
   };
 
   async componentDidMount() {
-    const url = "https://localhost:5001/api/plants";
-    const response = await fetch(url);
-    const plants = await response.json();
+    await this.getPlants();
+  }
+
+  async getPlants() {
+    const plants = await fetch(this.baseUrl).then((r) => r.json());
     this.setState({ plants });
   }
 
-  handleStart = (id) => {
-    console.log("start", id);
+  handleStart = async (id) => {
+    const url = `${this.baseUrl}/${id}/start`;
+    const response = await fetch(url, { method: "POST" });
+    console.log(response);
+    await this.getPlants();
   };
 
-  handleStop = (id) => {
-    console.log("stop", id);
+  handleStop = async (id) => {
+    const url = `${this.baseUrl}/${id}/stop`;
+    const response = await fetch(url, { method: "POST" });
+    console.log(response);
+    await this.getPlants();
   };
 
   render() {
