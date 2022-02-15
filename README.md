@@ -17,7 +17,7 @@ Project is deployed at `https://svplant.azurewebsites.net/index.html`
 
 run the following command from the root directory of the project:
 
-`npm run build`
+`npm start`
 
 Api should be available on `http://localhost:3000/`
 
