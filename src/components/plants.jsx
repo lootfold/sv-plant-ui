@@ -48,7 +48,7 @@ class Plants extends Component {
     const success = await plantService.startWatering(id);
     if (success) {
       const { name } = this.state.plants.filter((p) => p.id === id)[0];
-      toast.success(`Started watering plant ${name}.`, {
+      toast.success(`Started watering ${name}.`, {
         autoClose: 10000,
         pauseOnFocusLoss: false,
       });
@@ -67,7 +67,7 @@ class Plants extends Component {
     const success = await plantService.stopWatering(id);
     if (success) {
       const { name } = this.state.plants.filter((p) => p.id === id)[0];
-      toast.success(`Stopped watering plant ${name}.`, {
+      toast.success(`Stopped watering ${name}.`, {
         autoClose: 2000,
         hideProgressBar: true,
       });
