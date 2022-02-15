@@ -1,11 +1,12 @@
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const baseUrl = "https://localhost:5001/api/plants";
 
 axios.interceptors.response.use(null, (error) => {
   const message =
     error?.response?.data?.message || "An unexpected error occured.";
-  console.log(message);
+  toast.error(message);
 });
 
 const plantService = {
