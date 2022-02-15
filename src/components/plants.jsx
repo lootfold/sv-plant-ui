@@ -71,6 +71,7 @@ class Plants extends Component {
         autoClose: 2000,
         hideProgressBar: true,
       });
+      clearTimeout(this.stopTimeout);
     }
     await this.getPlants();
   };
