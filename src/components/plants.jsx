@@ -63,12 +63,11 @@ class Plants extends Component {
         <ToastContainer />
         <div className="row justify-content-center">
           {this.state.plants.map((p) => (
-            <div className="col-4 mt-2" key={p.id}>
+            <div className="col-sm-12 col-md-4 mt-2" key={p.id}>
               <Plant
                 data={p}
                 onStart={this.handleStart}
                 onStop={this.handleStop}
-                // onAlert={this.handleAlert}
               />
             </div>
           ))}

@@ -1,7 +1,8 @@
 import axios from "axios";
 import { toast } from "react-toastify";
 
-const baseUrl = "https://localhost:5001/api/plants";
+// const baseUrl = "https://localhost:5001/api/plants";
+const baseUrl = "/api/plants";
 
 axios.interceptors.response.use(null, (error) => {
   const message =
