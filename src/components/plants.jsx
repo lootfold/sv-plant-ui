@@ -21,6 +21,7 @@ class Plants extends Component {
   }
 
   checkForAlerts() {
+    toast.dismiss();
     this.state.plants.forEach((p) => {
       if (p.lastWatered === null && p.isGettingWatered === false) {
         this.showAlert(p.name);
@@ -47,11 +48,13 @@ class Plants extends Component {
   handleStart = async (id) => {
     await plantService.startWatering(id);
     await this.getPlants();
+    this.checkForAlerts();
   };
 
   handleStop = async (id) => {
     await plantService.stopWatering(id);
     await this.getPlants();
+    this.checkForAlerts();
   };
 
   render() {
