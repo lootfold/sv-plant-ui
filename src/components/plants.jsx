@@ -26,7 +26,7 @@ class Plants extends Component {
         this.showAlert(p.name);
       } else {
         const now = moment();
-        const diff = now.diff(p.lastWatered, "minutes");
+        const diff = now.diff(p.lastWatered, "hours");
         if (diff > 6) {
           this.showAlert(p.name);
         }
