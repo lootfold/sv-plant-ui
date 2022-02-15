@@ -45,12 +45,33 @@ class Plants extends Component {
   }
 
   handleStart = async (id) => {
-    await plantService.startWatering(id);
+    const success = await plantService.startWatering(id);
+    if (success) {
+      const { name } = this.state.plants.filter((p) => p.id === id)[0];
+      toast.success(`Started watering plant ${name}.`, {
+        autoClose: 10000,
+        pauseOnFocusLoss: false,
+      });
+      this.stopTimeout = setTimeout(
+        (id) => {
+          this.handleStop(id);
+        },
+        10000,
+        id
+      );
+    }
     await this.getPlants();
   };
 
   handleStop = async (id) => {
-    await plantService.stopWatering(id);
+    const success = await plantService.stopWatering(id);
+    if (success) {
+      const { name } = this.state.plants.filter((p) => p.id === id)[0];
+      toast.success(`Stopped watering plant ${name}.`, {
+        autoClose: 2000,
+        hideProgressBar: true,
+      });
+    }
     await this.getPlants();
   };
 

@@ -1,13 +1,16 @@
 import axios from "axios";
 import { toast } from "react-toastify";
 
-// const baseUrl = "https://localhost:5001/api/plants";
+// const baseUrl = "https://svplant.azurewebsites.net/api/plants";
 const baseUrl = "/api/plants";
 
 axios.interceptors.response.use(null, (error) => {
   const message =
     error?.response?.data?.message || "An unexpected error occured.";
-  toast.error(message);
+  toast.error(message, {
+    autoClose: 2000,
+    hideProgressBar: true,
+  });
 });
 
 const plantService = {
@@ -17,11 +20,13 @@ const plantService = {
   },
   startWatering: async (plantId) => {
     const url = `${baseUrl}/${plantId}/start`;
-    await axios.post(url);
+    const { status } = await axios.post(url);
+    if (status === 200) return true;
   },
   stopWatering: async (plantId) => {
     const url = `${baseUrl}/${plantId}/stop`;
-    await axios.post(url);
+    const { status } = await axios.post(url);
+    if (status === 200) return true;
   },
 };
 
